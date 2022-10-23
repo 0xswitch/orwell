@@ -1,4 +1,4 @@
-# Orwell - monitoring your tmux output
+# orwell - monitoring your tmux output
 The goal of the tool is to keep *all* your commands output within a tmux session. I wrote this because I always forgot to save my precious commands output.
 
 [![asciicast](https://asciinema.org/a/8mDdhgIxRM81LGUgFTliCkyvJ.svg)](https://asciinema.org/a/8mDdhgIxRM81LGUgFTliCkyvJ)
@@ -29,15 +29,15 @@ RestartSec=5s
 
 [Install]
 WantedBy=default.target
-
 ```
 
-Then add the following your `.zshrc`.
+Then add the following to your `.zshrc`.
 
 ```zsh
 if { [ -n "$TMUX" ]; } then
 	tmux pipe-pane 'exec cat - | python -u /path/to/orwell/orwell.py client $(tmux display-message -p "#S #I #P #{pane_pid}") >> /tmp/orwell-client-debug 2>&1'
 fi
+
 preexec() { 
 	if { [ -n "$TMUX" ];  } then 
 
@@ -51,7 +51,6 @@ preexec() {
 
 precmd() {
 	if { [ -n "$TMUX" ]; } then
-		
 		if [ -S /tmp/logger.sock ]
 		then
 			pane=$(tmux display-message -p '/tmp/#S-#I-#P')
