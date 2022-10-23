@@ -64,7 +64,10 @@ precmd() {
 }
 ```
 
-And you should be ready.
+And you should be ready. 
+
+All the commands output will be stored in `/home/$USER/.logged/$tmux_session_name/cmd-sha1.log`.
+
 
 You can also add a fzf binding to list your command wih a simple keyboard shortcut (here ctrl+j). Warning shitty code.
 
